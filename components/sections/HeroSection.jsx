@@ -298,20 +298,22 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="mailto:basirathumayun@gmail.com"
-                className="group px-7 py-3 backdrop-blur-sm font-bold text-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 no-underline"
-                style={{
-                  fontFamily: "'Comic Neue', cursive",
-                  borderRadius: "8px 20px 8px 20px",
-                  boxShadow: "4px 4px 0px rgba(0,0,0,0.1)",
-                  border: "2px solid",
-                  borderColor: isDark ? "#4b5563" : "#d1d5db",
-                  backgroundColor: isDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)",
-                  color: isDark ? "#e5e7eb" : "#1f2937",
-                }}
+              href="https://mail.google.com/mail/?view=cm&to=basirathumayun@gmail.com&su=Hiring%20Inquiry&body=Hi%20Basirat%2C%0A%0AI%20would%20like%20to%20hire%20you%20for%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group px-7 py-3 backdrop-blur-sm font-bold text-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 no-underline"
+              style={{
+                fontFamily: "'Comic Neue', cursive",
+                borderRadius: "8px 20px 8px 20px",
+                boxShadow: "4px 4px 0px rgba(0,0,0,0.1)",
+                border: "2px solid",
+                borderColor: isDark ? "#4b5563" : "#d1d5db",
+                backgroundColor: isDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)",
+                color: isDark ? "#e5e7eb" : "#1f2937",
+              }}
               >
-                <Mail size={16} />
-                Hire Me
+              <Mail size={16} />
+              Hire Me
               </a>
             </div>
           </div>

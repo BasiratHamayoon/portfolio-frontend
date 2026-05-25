@@ -14,6 +14,9 @@ import {
   Layout,
   Mail,
   FileSpreadsheet,
+  Star,
+  Rocket,
+  Award,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,8 +30,8 @@ const services = [
     gradient: "linear-gradient(135deg, #ec4899, #f43f5e)",
     accentColor: "#ec4899",
     darkAccent: "#fb7185",
-    pattern: "radial-gradient(circle at 20% 80%, rgba(236,72,153,0.15) 0%, transparent 50%)",
     number: "01",
+    achievement: "50+ Projects",
   },
   {
     icon: Server,
@@ -38,8 +41,8 @@ const services = [
     gradient: "linear-gradient(135deg, #a855f7, #7c3aed)",
     accentColor: "#a855f7",
     darkAccent: "#c084fc",
-    pattern: "radial-gradient(circle at 80% 20%, rgba(168,85,247,0.15) 0%, transparent 50%)",
     number: "02",
+    achievement: "100+ APIs",
   },
   {
     icon: Database,
@@ -49,8 +52,8 @@ const services = [
     gradient: "linear-gradient(135deg, #10b981, #14b8a6)",
     accentColor: "#10b981",
     darkAccent: "#34d399",
-    pattern: "radial-gradient(circle at 50% 50%, rgba(16,185,129,0.15) 0%, transparent 50%)",
     number: "03",
+    achievement: "99.9% Uptime",
   },
   {
     icon: Code,
@@ -60,297 +63,205 @@ const services = [
     gradient: "linear-gradient(135deg, #f59e0b, #ef4444)",
     accentColor: "#f59e0b",
     darkAccent: "#fbbf24",
-    pattern: "radial-gradient(circle at 80% 80%, rgba(245,158,11,0.15) 0%, transparent 50%)",
     number: "04",
+    achievement: "30+ Apps",
   },
   {
     icon: FileSpreadsheet,
     title: "MS Office Suite",
-    description: "Professional document creation, data analysis, and presentations using Microsoft Office tools.",
+    description: "Professional document creation, data analysis, and presentations.",
     tools: ["MS Word", "MS Excel", "PowerPoint", "Access"],
     gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)",
     accentColor: "#6366f1",
     darkAccent: "#818cf8",
-    pattern: "radial-gradient(circle at 20% 20%, rgba(99,102,241,0.15) 0%, transparent 50%)",
     number: "05",
+    achievement: "1000+ Reports",
   },
   {
     icon: Globe,
     title: "Deploy & DevOps",
-    description: "Launching your applications to the world with optimized performance and CI/CD.",
+    description: "Launching your applications to the world with optimized performance.",
     tools: ["Git", "Vercel", "Netlify", "GitHub Actions"],
     gradient: "linear-gradient(135deg, #06b6d4, #0891b2)",
     accentColor: "#06b6d4",
     darkAccent: "#22d3ee",
-    pattern: "radial-gradient(circle at 50% 80%, rgba(6,182,212,0.15) 0%, transparent 50%)",
     number: "06",
+    achievement: "24/7 Support",
   },
 ];
 
 function ServiceCard({ service, index, isDark }) {
-  const cardRef = useRef(null);
-  const numberRef = useRef(null);
-  const iconContainerRef = useRef(null);
-  const contentRef = useRef(null);
-  const toolsRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-
-  const isFromLeft = index % 2 === 0;
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        cardRef.current,
-        {
-          x: isFromLeft ? -200 : 200,
-          opacity: 0,
-          rotateY: isFromLeft ? -25 : 25,
-          scale: 0.85,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          rotateY: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 88%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        numberRef.current,
-        {
-          x: isFromLeft ? -50 : 50,
-          opacity: 0,
-          scale: 0,
-          rotation: isFromLeft ? -45 : 45,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.9,
-          delay: 0.3,
-          ease: "back.out(2)",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        iconContainerRef.current,
-        {
-          x: isFromLeft ? -80 : 80,
-          scale: 0,
-          rotation: isFromLeft ? -180 : 180,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          scale: 1,
-          rotation: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.15,
-          ease: "elastic.out(1, 0.5)",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        contentRef.current,
-        {
-          x: isFromLeft ? -60 : 60,
-          opacity: 0,
-          skewX: isFromLeft ? -5 : 5,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          skewX: 0,
-          duration: 0.8,
-          delay: 0.35,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        toolsRef.current,
-        {
-          x: isFromLeft ? -40 : 40,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.7,
-          delay: 0.5,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, [index, isFromLeft]);
+  const cardRef = useRef(null);
+  const iconRef = useRef(null);
+  const glowRef = useRef(null);
 
   useEffect(() => {
-    if (isHovered && iconContainerRef.current) {
-      gsap.to(iconContainerRef.current, {
-        y: -8,
-        scale: 1.1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      });
-    } else if (iconContainerRef.current) {
-      gsap.to(iconContainerRef.current, {
+    gsap.fromTo(
+      cardRef.current,
+      {
+        y: 60,
+        opacity: 0,
+        scale: 0.9,
+      },
+      {
         y: 0,
+        opacity: 1,
         scale: 1,
+        duration: 0.7,
+        delay: index * 0.08,
+        ease: "back.out(1)",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }, [index]);
+
+  useEffect(() => {
+    if (isHovered) {
+      gsap.to(iconRef.current, {
+        scale: 1.1,
         duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(glowRef.current, {
+        scale: 1.1,
+        opacity: 0.4,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(iconRef.current, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+      gsap.to(glowRef.current, {
+        scale: 1,
+        opacity: 0,
+        duration: 0.2,
         ease: "power2.out",
       });
     }
   }, [isHovered]);
 
   const IconComponent = service.icon;
-  const isEven = index % 2 === 0;
 
   return (
     <div
       ref={cardRef}
-      className="relative group"
+      className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ perspective: "1200px" }}
     >
+      {/* Glow effect - only visible on hover */}
       <div
-        className="relative flex flex-col sm:flex-row items-start gap-5 sm:gap-8 p-6 sm:p-8 transition-all duration-500 cursor-pointer"
+        ref={glowRef}
+        className="absolute -inset-4 rounded-2xl opacity-0 pointer-events-none"
         style={{
-          borderRadius: isEven ? "30px 8px 30px 8px" : "8px 30px 8px 30px",
-          backgroundColor: isDark ? "rgba(17, 17, 17, 0.6)" : "rgba(255, 255, 255, 0.7)",
-          backdropFilter: "blur(20px)",
-          border: `2px solid ${isHovered ? service.accentColor + "40" : isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"}`,
+          background: service.gradient,
+          filter: "blur(20px)",
+          transition: "opacity 0.2s ease",
+        }}
+      />
+
+      <div
+        className="relative overflow-hidden transition-all duration-300 cursor-pointer h-full"
+        style={{
+          borderRadius: "24px",
+          background: isDark
+            ? `linear-gradient(135deg, rgba(25, 25, 40, 0.95), rgba(18, 18, 30, 0.95))`
+            : `linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 255, 0.98))`,
+          border: `2px solid ${isHovered ? service.accentColor + "40" : service.accentColor + "12"}`,
+          transform: isHovered ? "translateY(-6px)" : "translateY(0)",
+          transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
           boxShadow: isHovered
-            ? `0 25px 60px ${service.accentColor}20, 0 0 0 1px ${service.accentColor}15, 8px 8px 0px ${service.accentColor}10`
-            : isDark
-              ? "0 2px 10px rgba(0,0,0,0.2), 4px 4px 0px rgba(255,255,255,0.02)"
-              : "0 2px 10px rgba(0,0,0,0.04), 4px 4px 0px rgba(0,0,0,0.03)",
-          transform: isHovered ? "translateY(-4px)" : "translateY(0)",
-          backgroundImage: isHovered ? service.pattern : "none",
+            ? `0 20px 35px -14px ${service.accentColor}50`
+            : "none",
         }}
       >
-        <div
-          ref={numberRef}
-          className="absolute top-3 right-4 sm:top-4 sm:right-6 font-extrabold text-5xl sm:text-7xl select-none pointer-events-none transition-all duration-500"
-          style={{
-            fontFamily: "'Bangers', cursive",
-            color: isHovered
-              ? isDark ? service.darkAccent : service.accentColor
-              : isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
-            opacity: isHovered ? 0.15 : 1,
-            letterSpacing: "2px",
-          }}
-        >
-          {service.number}
-        </div>
-
-        <div className="flex-shrink-0">
-          <div
-            ref={iconContainerRef}
-            className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transition-all duration-300"
-            style={{
-              borderRadius: isEven ? "20px 6px 20px 6px" : "6px 20px 6px 20px",
-              background: isHovered ? service.gradient : isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
-              boxShadow: isHovered
-                ? `6px 6px 0px ${service.accentColor}25, 0 10px 30px ${service.accentColor}20`
-                : `4px 4px 0px ${isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.05)"}`,
-            }}
-          >
-            <IconComponent
-              size={32}
-              style={{
-                color: isHovered ? "#ffffff" : isDark ? service.darkAccent : service.accentColor,
-              }}
-              className="transition-colors duration-300"
-            />
-
+        <div className="p-6">
+          {/* Number and Achievement Row */}
+          <div className="flex justify-between items-start mb-4">
             <div
-              className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center transition-all duration-300"
+              className="text-4xl font-black opacity-15"
               style={{
-                background: service.gradient,
-                transform: isHovered ? "scale(1)" : "scale(0)",
-                boxShadow: `0 2px 8px ${service.accentColor}40`,
+                fontFamily: "'Bangers', cursive",
+                color: service.accentColor,
               }}
             >
-              <Sparkles size={8} color="#fff" />
+              {service.number}
+            </div>
+            <div
+              className="px-3 py-1 rounded-full text-xs font-bold"
+              style={{
+                background: `${service.accentColor}12`,
+                color: service.accentColor,
+                border: `1px solid ${service.accentColor}25`,
+                fontFamily: "'Bubblegum Sans', cursive",
+              }}
+            >
+              {service.achievement}
             </div>
           </div>
-        </div>
 
-        <div className="flex-1 min-w-0 relative z-10">
-          <div ref={contentRef}>
-            <h3
-              className="text-xl sm:text-2xl font-bold mb-2 transition-colors duration-300"
+          {/* Icon */}
+          <div className="relative mb-4">
+            <div
+              ref={iconRef}
+              className="relative w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300"
               style={{
-                fontFamily: "'Bubblegum Sans', cursive",
-                color: isHovered
-                  ? isDark ? service.darkAccent : service.accentColor
-                  : isDark ? "#f5f5f5" : "#1a1a2e",
+                background: `${service.accentColor}08`,
+                borderRadius: "14px",
+                border: `1px solid ${service.accentColor}15`,
               }}
             >
-              {service.title}
-            </h3>
-
-            <p
-              className="text-sm sm:text-base leading-relaxed mb-4"
-              style={{
-                fontFamily: "'Comic Neue', cursive",
-                color: isDark ? "#9ca3af" : "#6b7280",
-                maxWidth: "400px",
-              }}
-            >
-              {service.description}
-            </p>
+              <IconComponent
+                size={28}
+                style={{ color: service.accentColor }}
+                className="transition-all duration-300"
+              />
+            </div>
           </div>
 
-          <div ref={toolsRef} className="flex flex-wrap gap-2">
+          {/* Title */}
+          <h3
+            className="text-xl font-bold mb-2"
+            style={{
+              fontFamily: "'Bubblegum Sans', cursive",
+              color: isDark ? "#f0f0f0" : "#1a1a2e",
+            }}
+          >
+            {service.title}
+          </h3>
+
+          {/* Description */}
+          <p
+            className="text-sm leading-relaxed mb-4"
+            style={{
+              fontFamily: "'Comic Neue', cursive",
+              color: isDark ? "#a1a1aa" : "#6b7280",
+              lineHeight: "1.5",
+            }}
+          >
+            {service.description}
+          </p>
+
+          {/* Tools */}
+          <div className="flex flex-wrap gap-2">
             {service.tools.map((tool, i) => (
               <span
                 key={tool}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-all duration-300"
+                className="px-2.5 py-1 text-xs rounded-full transition-all duration-200"
                 style={{
-                  fontFamily: "'Comic Neue', cursive",
-                  borderRadius: i % 2 === 0 ? "10px 3px 10px 3px" : "3px 10px 3px 10px",
                   background: isHovered
-                    ? service.gradient
-                    : isDark
-                      ? "rgba(255,255,255,0.06)"
-                      : "rgba(0,0,0,0.04)",
-                  color: isHovered ? "#ffffff" : isDark ? "#9ca3af" : "#6b7280",
-                  boxShadow: isHovered ? `2px 2px 0px ${service.accentColor}30` : "none",
-                  transform: isHovered ? `translateY(-${i % 2 === 0 ? 2 : 0}px)` : "translateY(0)",
+                    ? `${service.accentColor}15`
+                    : isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)",
+                  color: service.accentColor,
+                  fontFamily: "'Comic Neue', cursive",
                 }}
               >
                 {tool}
@@ -358,18 +269,19 @@ function ServiceCard({ service, index, isDark }) {
             ))}
           </div>
         </div>
-      </div>
 
-      <div
-        className="absolute bottom-0 h-0.5 group-hover:w-1/2 transition-all duration-700 ease-out"
-        style={{
-          background: service.gradient,
-          borderRadius: "4px",
-          left: isFromLeft ? "32px" : "auto",
-          right: isFromLeft ? "auto" : "32px",
-          width: "0",
-        }}
-      />
+        {/* Decorative Corner - only visible on hover */}
+        {isHovered && (
+          <div
+            className="absolute bottom-0 right-0 w-20 h-20 opacity-10 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle, ${service.accentColor}, transparent)`,
+              filter: "blur(18px)",
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -377,14 +289,12 @@ function ServiceCard({ service, index, isDark }) {
 export default function ServicesSection() {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef(null);
-  const headingWordRefs = useRef([]);
-  const subheadingRef = useRef(null);
+  const headingRef = useRef(null);
   const badgeRef = useRef(null);
   const decorRef = useRef(null);
-  const ctaRef = useRef(null);
-  const ctaButtonRef = useRef(null);
-  const ctaTextRef = useRef(null);
-  const dotsRef = useRef([]);
+  const floatingIconsRef = useRef([]);
+
+  const floatingIcons = [Rocket, Star, Award, Sparkles, Zap, Code];
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -400,174 +310,95 @@ export default function ServicesSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Section entrance
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // Badge animation
       gsap.fromTo(
         badgeRef.current,
-        { x: 150, opacity: 0, scale: 0.5, rotation: 15 },
+        { scale: 0, rotation: -180 },
         {
-          x: 0,
-          opacity: 1,
           scale: 1,
           rotation: 0,
-          duration: 1,
+          duration: 0.8,
           ease: "elastic.out(1, 0.5)",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
+            trigger: badgeRef.current,
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         }
       );
 
-      headingWordRefs.current.forEach((el, i) => {
-        if (el) {
-          gsap.fromTo(
-            el,
-            {
-              x: 200 + i * 50,
-              opacity: 0,
-              rotateZ: 10,
-              skewX: -15,
-              scale: 0.7,
+      // Heading animation - split text effect
+      const headingText = headingRef.current;
+      if (headingText) {
+        const words = headingText.textContent?.split(" ") || [];
+        headingText.innerHTML = "";
+        words.forEach((word, i) => {
+          const span = document.createElement("span");
+          span.textContent = word + " ";
+          span.style.display = "inline-block";
+          span.style.opacity = "0";
+          span.style.transform = "translateY(50px) rotateX(90deg)";
+          span.style.fontFamily = "'Bubblegum Sans', cursive";
+          headingText.appendChild(span);
+          gsap.to(span, {
+            opacity: 1,
+            transform: "translateY(0) rotateX(0)",
+            duration: 0.6,
+            delay: 0.2 + i * 0.1,
+            ease: "back.out(1.5)",
+            scrollTrigger: {
+              trigger: headingText,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
             },
-            {
-              x: 0,
-              opacity: 1,
-              rotateZ: 0,
-              skewX: 0,
-              scale: 1,
-              duration: 1.2,
-              delay: 0.1 + i * 0.15,
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
-      });
+          });
+        });
+      }
 
-      gsap.fromTo(
-        subheadingRef.current,
-        { x: 120, opacity: 0, skewX: -8 },
-        {
-          x: 0,
-          opacity: 1,
-          skewX: 0,
-          duration: 1,
-          delay: 0.4,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      dotsRef.current.forEach((el, i) => {
+      // Floating icons animation
+      floatingIconsRef.current.forEach((el, i) => {
         if (el) {
-          gsap.fromTo(
-            el,
-            { x: 100 + i * 20, opacity: 0, scale: 0 },
-            {
-              x: 0,
-              opacity: 1,
-              scale: 1,
-              duration: 0.6,
-              delay: 0.5 + i * 0.08,
-              ease: "back.out(3)",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
+          gsap.to(el, {
+            y: -25,
+            x: i % 2 === 0 ? 20 : -20,
+            duration: 4 + i,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: i * 0.3,
+          });
+          gsap.to(el, {
+            rotation: 360,
+            duration: 18 + i * 3,
+            repeat: -1,
+            ease: "linear",
+          });
         }
       });
 
-      gsap.fromTo(
-        decorRef.current,
-        { x: 200, scale: 0, rotation: -180, opacity: 0 },
-        {
-          x: 0,
-          scale: 1,
-          rotation: 0,
-          opacity: 1,
-          duration: 1.2,
-          delay: 0.3,
-          ease: "elastic.out(1, 0.5)",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
+      // Decorative shape animation
       gsap.to(decorRef.current, {
-        rotation: 360,
-        duration: 20,
+        scale: 1.15,
+        duration: 8,
         repeat: -1,
-        ease: "linear",
+        yoyo: true,
+        ease: "sine.inOut",
       });
-
-      gsap.fromTo(
-        ctaRef.current,
-        { x: 200, opacity: 0, rotateY: 15, scale: 0.85 },
-        {
-          x: 0,
-          opacity: 1,
-          rotateY: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ctaTextRef.current,
-        { x: 100, opacity: 0, skewX: -10 },
-        {
-          x: 0,
-          opacity: 1,
-          skewX: 0,
-          duration: 0.9,
-          delay: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ctaButtonRef.current,
-        { x: 150, opacity: 0, scale: 0.5, rotation: 10 },
-        {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 1,
-          delay: 0.4,
-          ease: "elastic.out(1, 0.6)",
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
     });
 
     return () => ctx.revert();
@@ -580,93 +411,67 @@ export default function ServicesSection() {
       className="relative py-20 sm:py-28 overflow-hidden"
       style={{
         background: isDark
-          ? "linear-gradient(180deg, #0a0a0a 0%, #0f0f1a 50%, #0a0a0a 100%)"
-          : "linear-gradient(180deg, #fafafa 0%, #f0f0ff 50%, #fafafa 100%)",
+          ? "radial-gradient(ellipse at top, #1a0f2a 0%, #0a0a0f 100%)"
+          : "radial-gradient(ellipse at top, #f8f9ff 0%, #f0f2ff 100%)",
       }}
     >
+      {/* Animated Background Elements */}
       <div
-        className="absolute top-20 left-10 w-2 h-2 rounded-full"
+        ref={decorRef}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-25 pointer-events-none"
         style={{
-          backgroundColor: "#ec4899",
-          boxShadow: "0 0 20px rgba(236,72,153,0.5)",
-          animation: "float-random 4s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute top-40 right-20 w-3 h-3 rounded-full"
-        style={{
-          backgroundColor: "#a855f7",
-          boxShadow: "0 0 20px rgba(168,85,247,0.5)",
-          animation: "float-random 5s ease-in-out infinite",
-          animationDelay: "1s",
-        }}
-      />
-      <div
-        className="absolute bottom-40 left-1/4 w-2 h-2 rounded-full"
-        style={{
-          backgroundColor: "#10b981",
-          boxShadow: "0 0 20px rgba(16,185,129,0.5)",
-          animation: "float-random 6s ease-in-out infinite",
-          animationDelay: "2s",
-        }}
-      />
-      <div
-        className="absolute top-1/3 right-1/4 w-1.5 h-1.5 rounded-full"
-        style={{
-          backgroundColor: "#f59e0b",
-          boxShadow: "0 0 15px rgba(245,158,11,0.5)",
-          animation: "float-random 4.5s ease-in-out infinite",
-          animationDelay: "0.5s",
-        }}
-      />
-      <div
-        className="absolute bottom-1/4 right-10 w-2.5 h-2.5 rounded-full"
-        style={{
-          backgroundColor: "#06b6d4",
-          boxShadow: "0 0 20px rgba(6,182,212,0.5)",
-          animation: "float-random 5.5s ease-in-out infinite",
-          animationDelay: "1.5s",
+          background: "radial-gradient(circle, rgba(168,85,247,0.15), rgba(236,72,153,0.06))",
+          filter: "blur(80px)",
         }}
       />
 
+      {/* Floating Icons Background */}
+      {floatingIcons.map((Icon, i) => (
+        <div
+          key={i}
+          ref={(el) => (floatingIconsRef.current[i] = el)}
+          className="absolute pointer-events-none"
+          style={{
+            top: `${12 + (i * 10)}%`,
+            left: `${3 + (i * 12)}%`,
+            opacity: 0.04,
+          }}
+        >
+          <Icon size={40 + i * 10} />
+        </div>
+      ))}
+
+      {/* Animated Gradient Orbs */}
       <div
-        className="absolute top-0 left-0 w-80 h-80 rounded-full"
+        className="absolute top-20 left-10 w-64 h-64 rounded-full opacity-25"
         style={{
-          background: "linear-gradient(135deg, rgba(236,72,153,0.08), rgba(168,85,247,0.05))",
-          filter: "blur(80px)",
-          transform: "translate(-40%, -40%)",
+          background: "radial-gradient(circle, #ec4899, transparent)",
+          filter: "blur(60px)",
+          animation: "float 8s ease-in-out infinite",
         }}
       />
       <div
-        className="absolute bottom-0 right-0 w-80 h-80 rounded-full"
+        className="absolute bottom-20 right-10 w-72 h-72 rounded-full opacity-25"
         style={{
-          background: "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(6,182,212,0.05))",
-          filter: "blur(80px)",
-          transform: "translate(40%, 40%)",
+          background: "radial-gradient(circle, #a855f7, transparent)",
+          filter: "blur(60px)",
+          animation: "float 10s ease-in-out infinite reverse",
         }}
       />
 
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="text-center mb-16 sm:mb-20 relative">
-          <div
-            ref={decorRef}
-            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-          >
-            <svg width="120" height="120" viewBox="0 0 120 120" style={{ opacity: 0.06 }}>
-              <polygon points="60,5 72,40 110,40 80,60 90,95 60,75 30,95 40,60 10,40 48,40" fill={isDark ? "#fff" : "#000"} />
-            </svg>
-          </div>
-
-          <div ref={badgeRef} className="inline-block mb-6">
+        {/* Header Section */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div ref={badgeRef} className="inline-block mb-5">
             <span
-              className="inline-flex items-center gap-2 px-6 py-2.5 font-bold text-sm tracking-wider"
+              className="inline-flex items-center gap-2.5 px-6 py-2.5 font-bold text-sm tracking-wider"
               style={{
-                fontFamily: "'Comic Neue', cursive",
-                borderRadius: "20px 5px 20px 5px",
-                boxShadow: "4px 4px 0px rgba(168,85,247,0.15)",
+                fontFamily: "'Bubblegum Sans', cursive",
+                borderRadius: "25px 8px 25px 8px",
+                boxShadow: "6px 6px 0px rgba(168,85,247,0.15)",
                 border: "2px dashed #a855f7",
                 color: "#a855f7",
-                backgroundColor: isDark ? "rgba(168, 85, 247, 0.08)" : "rgba(168, 85, 247, 0.05)",
+                background: isDark ? "rgba(168, 85, 247, 0.1)" : "rgba(168, 85, 247, 0.06)",
               }}
             >
               <Zap size={15} />
@@ -676,57 +481,42 @@ export default function ServicesSection() {
           </div>
 
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bubble-text mb-5 flex items-center justify-center gap-3 sm:gap-5 flex-wrap"
-            style={{ fontFamily: "'Bubblegum Sans', cursive" }}
+            ref={headingRef}
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-5"
+            style={{ fontFamily: "'Bubblegum Sans', cursive", color: isDark ? "#f5f5f5" : "#1a1a2e" }}
           >
-            <span
-              ref={(el) => (headingWordRefs.current[0] = el)}
-              style={{ color: isDark ? "#f5f5f5" : "#1a1a2e", display: "inline-block" }}
-            >
-              My
-            </span>
-            <span
-              ref={(el) => (headingWordRefs.current[1] = el)}
-              style={{
-                background: "linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                display: "inline-block",
-              }}
-            >
-              Services
-            </span>
+            My Services
           </h2>
 
           <p
-            ref={subheadingRef}
-            className="text-base sm:text-lg max-w-xl mx-auto leading-relaxed"
+            className="text-base max-w-xl mx-auto leading-relaxed"
             style={{
               fontFamily: "'Comic Neue', cursive",
-              color: isDark ? "#9ca3af" : "#6b7280",
+              color: isDark ? "#a1a1aa" : "#6b7280",
             }}
           >
             From concept to deployment, I bring your digital vision to life with modern technologies and creative solutions.
           </p>
 
-          <div className="flex items-center justify-center gap-2 mt-6">
+          {/* Decorative Line */}
+          <div className="flex items-center justify-center gap-2.5 mt-8">
             {["#ec4899", "#a855f7", "#10b981", "#f59e0b", "#6366f1", "#06b6d4"].map((color, i) => (
               <div
                 key={i}
-                ref={(el) => (dotsRef.current[i] = el)}
-                className="w-2 h-2 rounded-full transition-all duration-300"
+                className="h-1 rounded-full transition-all duration-300"
                 style={{
-                  backgroundColor: color,
-                  animation: `float ${2 + i * 0.3}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.2}s`,
+                  width: i === 2 ? "40px" : "20px",
+                  background: color,
+                  animation: `pulse-width ${2 + i * 0.3}s ease-in-out infinite`,
+                  boxShadow: `0 0 8px ${color}`,
                 }}
               />
             ))}
           </div>
         </div>
 
-        <div className="space-y-5 sm:space-y-6">
+        {/* Services Grid - 3x2 Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {services.map((service, index) => (
             <ServiceCard
               key={service.title}
@@ -737,142 +527,47 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        <div ref={ctaRef} className="mt-20 sm:mt-24 relative" style={{ perspective: "1200px" }}>
-          <div
-            className="relative p-8 sm:p-12 overflow-hidden"
-            style={{
-              borderRadius: "30px 10px 30px 10px",
-              background: isDark
-                ? "linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.05))"
-                : "linear-gradient(135deg, rgba(168,85,247,0.06), rgba(236,72,153,0.03))",
-              border: `2px solid ${isDark ? "rgba(168,85,247,0.15)" : "rgba(168,85,247,0.1)"}`,
-              boxShadow: isDark
-                ? "0 20px 60px rgba(0,0,0,0.3), 8px 8px 0px rgba(168,85,247,0.05)"
-                : "0 20px 60px rgba(168,85,247,0.08), 8px 8px 0px rgba(168,85,247,0.05)",
-            }}
-          >
-            <div
-              className="absolute top-0 right-0 w-40 h-40 rounded-full"
-              style={{
-                background: "linear-gradient(135deg, rgba(168,85,247,0.1), transparent)",
-                filter: "blur(40px)",
-                transform: "translate(20%, -20%)",
-              }}
-            />
-            <div
-              className="absolute bottom-0 left-0 w-40 h-40 rounded-full"
-              style={{
-                background: "linear-gradient(135deg, rgba(236,72,153,0.1), transparent)",
-                filter: "blur(40px)",
-                transform: "translate(-20%, 20%)",
-              }}
-            />
-
-            <div
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 font-extrabold text-6xl sm:text-8xl select-none pointer-events-none"
-              style={{
-                fontFamily: "'Bangers', cursive",
-                color: isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
-                letterSpacing: "4px",
-              }}
-            >
-              ?!
+        {/* CTA Section */}
+        <div className="mt-16 text-center p-10 rounded-3xl relative overflow-hidden group/cta" style={{
+          background: isDark ? "linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.06))" : "linear-gradient(135deg, rgba(168,85,247,0.06), rgba(236,72,153,0.03))",
+          border: `2px solid ${isDark ? "rgba(168,85,247,0.15)" : "rgba(168,85,247,0.1)"}`,
+          borderRadius: "35px 10px 35px 10px",
+        }}>
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 mb-4 rounded-full" style={{ background: "#a855f715", border: "1px solid #a855f730" }}>
+              <Mail size={15} className="text-purple-400" />
+              <span className="text-sm font-bold text-purple-400" style={{ fontFamily: "'Bubblegum Sans', cursive" }}>AVAILABLE FOR PROJECTS</span>
             </div>
-
-            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
-              <div ref={ctaTextRef} className="flex-1 text-center sm:text-left">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-1.5 mb-4"
-                  style={{
-                    borderRadius: "12px 4px 12px 4px",
-                    backgroundColor: isDark ? "rgba(168,85,247,0.1)" : "rgba(168,85,247,0.08)",
-                    border: "1px dashed rgba(168,85,247,0.3)",
-                  }}
-                >
-                  <Sparkles size={12} style={{ color: "#a855f7" }} />
-                  <span
-                    className="text-xs font-bold tracking-wider"
-                    style={{ fontFamily: "'Comic Neue', cursive", color: "#a855f7" }}
-                  >
-                    AVAILABLE FOR PROJECTS
-                  </span>
-                </div>
-
-                <h3
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3"
-                  style={{
-                    fontFamily: "'Bubblegum Sans', cursive",
-                    color: isDark ? "#f5f5f5" : "#1a1a2e",
-                  }}
-                >
-                  Got a project in{" "}
-                  <span
-                    style={{
-                      background: "linear-gradient(to right, #a855f7, #ec4899)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    mind?
-                  </span>
-                </h3>
-
-                <p
-                  className="text-sm sm:text-base max-w-md"
-                  style={{
-                    fontFamily: "'Comic Neue', cursive",
-                    color: isDark ? "#9ca3af" : "#6b7280",
-                    lineHeight: "1.7",
-                  }}
-                >
-                  I would love to hear about your ideas. Whether it is a fresh project or an existing one that needs improvement, let us make it happen together.
-                </p>
-              </div>
-
-              <div ref={ctaButtonRef} className="flex-shrink-0">
-                <a
-                  href="https://mail.google.com/mail/?view=cm&to=basirathumayun@gmail.com&su=Project%20Inquiry&body=Hi%20Basirat%2C%0A%0AI%20have%20a%20project%20idea%20I%20would%20like%20to%20discuss%20with%20you."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-3 no-underline"
-                >
-                  <div
-                    className="absolute -inset-2 rounded-3xl blur-md opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)" }}
-                  />
-                  <div
-                    className="relative px-8 py-4 text-white font-bold text-base flex items-center gap-3 transition-all duration-300 group-hover:scale-105 group-active:scale-95"
-                    style={{
-                      background: "linear-gradient(135deg, #a855f7, #ec4899)",
-                      fontFamily: "'Comic Neue', cursive",
-                      borderRadius: "22px 8px 22px 8px",
-                      boxShadow: "6px 6px 0px rgba(168,85,247,0.2), 0 10px 30px rgba(168,85,247,0.25)",
-                    }}
-                  >
-                    <Mail size={20} />
-                    <span>Get In Touch</span>
-                    <ArrowRight
-                      size={16}
-                      className="group-hover:translate-x-1 transition-transform duration-300"
-                    />
-                  </div>
-                </a>
-
-                <p
-                  className="text-center mt-3 text-xs"
-                  style={{
-                    fontFamily: "'Comic Neue', cursive",
-                    color: isDark ? "#6b7280" : "#9ca3af",
-                  }}
-                >
-                  basirathumayun@gmail.com
-                </p>
-              </div>
-            </div>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: "'Bubblegum Sans', cursive", color: isDark ? "#f5f5f5" : "#1a1a2e" }}>
+              Got a project in{" "}
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                mind?
+              </span>
+            </h3>
+            <p className="text-sm mb-6" style={{ fontFamily: "'Comic Neue', cursive", color: isDark ? "#a1a1aa" : "#6b7280" }}>
+              I would love to hear about your ideas. Whether it is a fresh project or an existing one that needs improvement, let us make it happen together.
+            </p>
+            <a href="https://mail.google.com/mail/?view=cm&to=basirathumayun@gmail.com&su=Project%20Inquiry&body=Hi%20Basirat%2C%0A%0AI%20have%20a%20project%20idea%20I%20would%20like%20to%20discuss%20with%20you." target="_blank" rel="noopener noreferrer" className="group/btn inline-flex items-center gap-2.5 px-8 py-3 text-white font-bold text-sm transition-all duration-300 hover:scale-105 hover:gap-4" style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", borderRadius: "25px 8px 25px 8px", boxShadow: "6px 6px 0px rgba(168,85,247,0.25)", fontFamily: "'Bubblegum Sans', cursive" }}>
+              Get In Touch <Mail size={15} className="group-hover/btn:translate-x-1 transition-transform" />
+            </a>
+            <p className="text-center mt-3 text-xs" style={{ fontFamily: "'Comic Neue', cursive", color: isDark ? "#6b7280" : "#9ca3af" }}>
+              basirathumayun@gmail.com
+            </p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes pulse-width {
+          0%, 100% { width: 18px; opacity: 0.5; }
+          50% { width: 45px; opacity: 1; }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-15px) translateX(8px); }
+        }
+      `}</style>
     </section>
   );
 }

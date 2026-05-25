@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { Menu, X, Home, Zap, FolderKanban, MessageCircle, ArrowRight } from "lucide-react";
+import { Menu, X, Home, Zap, FolderKanban, MessageCircle, ArrowRight, FileText } from "lucide-react";
 import ThemeToggle from "@/components/common/ThemeToggle";
 
 const InstagramIcon = () => (
@@ -32,6 +32,7 @@ const GithubIcon = () => (
 const navLinks = [
   { name: "Home", href: "#home", icon: Home },
   { name: "Services", href: "#services", icon: Zap },
+  { name: "Resume", href: "#resume", icon: FileText },
   { name: "Projects", href: "#projects", icon: FolderKanban },
 ];
 
@@ -84,22 +85,38 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > window.innerHeight - 100);
 
-      const sections = ["home", "services", "projects"];
+      const sections = ["home", "services", "resume", "projects"];
       let current = "home";
+      let minDistance = Infinity;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
+          const distance = Math.abs(rect.top);
+
+          if (rect.top <= 200 && rect.bottom >= 100 && distance < minDistance) {
+            minDistance = distance;
             current = section;
           }
         }
       }
 
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      if (docHeight - scrollBottom < 100) {
+        const lastSection = sections[sections.length - 1];
+        const lastElement = document.getElementById(lastSection);
+        if (lastElement) {
+          current = lastSection;
+        }
+      }
+
       setActiveSection(current);
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
